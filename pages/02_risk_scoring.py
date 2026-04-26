@@ -152,9 +152,11 @@ with col_right:
         title="Risk Score by Tenure vs Monthly Charges",
         labels={'risk_score': 'Risk Score'}
     )
-    fig2.update_layout(
+fig2.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font_color='#e0e0e0'
     )
-    fig2.update_xax
+    fig2.update_xaxes(gridcolor='#1a4a7a')
+    fig2.update_yaxes(gridcolor='#1a4a7a')
+    st.plotly_chart(fig2, use_container_width=True)
