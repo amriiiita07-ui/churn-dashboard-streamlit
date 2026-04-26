@@ -13,10 +13,7 @@ except Exception as e:
     st.error(f"Could not load data file: {e}")
     st.stop()
 
-# Show columns for debugging (remove after confirming it works)
-# st.write("Columns:", df.columns.tolist())
-
-# Calculate risk score
+# Calculate risk_score (this column doesn't exist in CSV, we create it)
 df['risk_score'] = (
     (df['MonthlyCharges'] / df['MonthlyCharges'].max()) * 0.5 +
     (1 - df['tenure'] / df['tenure'].max()) * 0.5
@@ -25,8 +22,7 @@ df['risk_score'] = (
 # Top 50 at-risk customers
 st.subheader("🏆 Top 50 At-Risk Customers")
 
-# Use exact column names from IBM dataset
-cols_to_show = [c for c in ['customerID', 'Contract', 'tenure', 'MonthlyCharges', 'risk_score'] 
+cols_to_show = [c for c in ['customerID', 'Contract', 'tenure', 'MonthlyCharges', 'risk_score']
                 if c in df.columns]
 
 if len(cols_to_show) == 0:
@@ -36,7 +32,7 @@ else:
     top_50 = df.nlargest(50, 'risk_score')[cols_to_show]
     st.dataframe(top_50, use_container_width=True)
 
-# Risk distribution
+# Risk distribution chart
 st.subheader("📊 Risk Score Distribution")
 risk_bins = pd.cut(df['risk_score'], bins=10)
 st.bar_chart(risk_bins.value_counts().sort_index())
