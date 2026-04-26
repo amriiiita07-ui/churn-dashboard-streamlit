@@ -14,7 +14,7 @@ except Exception as e:
     st.error(f"Could not load data file: {e}")
     st.stop()
 
-# Create cohort_month from tenure (NOT in original CSV - we create it)
+# Create cohort_month from tenure
 df['signup_date'] = datetime.now() - pd.to_timedelta(df['tenure'] * 30, unit='D')
 df['cohort_month'] = df['signup_date'].dt.to_period('M').astype(str)
 
