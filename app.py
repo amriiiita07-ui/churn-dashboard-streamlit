@@ -145,32 +145,37 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Quick Navigation
+# Quick Navigation
 st.markdown("---")
 st.markdown('<h3 style="color: #00d2ff; text-align: center;">🚀 Navigate Using the Sidebar</h3>', unsafe_allow_html=True)
 
-nav_col1, nav_col2, nav_col3, nav_col4 = st.columns(4)
+st.info("👈 Click the pages in the left sidebar to navigate: Executive Summary, Risk Scoring, Cohort Analysis, Revenue Impact.")
 
-with nav_col1:
-    if st.button("📊 Executive Summary", use_container_width=True):
-        import streamlit as st
-        
-        st.title("Customer Churn Intelligence Platform")
+# Optional: Display page previews as static cards (no buttons, no switching)
+preview_col1, preview_col2 = st.columns(2)
+with preview_col1:
+    st.markdown("""
+    <div style="background-color: #0f3460; padding: 20px; border-radius: 10px; border-left: 4px solid #00d2ff; margin-bottom: 15px;">
+        <div style="color: #00d2ff; font-weight: bold; font-size: 16px;">📊 Executive Summary</div>
+        <div style="color: #c0c0c0; font-size: 13px; margin-top: 5px;">KPIs, churn overview, and key metrics dashboard</div>
+    </div>
+    <div style="background-color: #0f3460; padding: 20px; border-radius: 10px; border-left: 4px solid #ffd93d; margin-bottom: 15px;">
+        <div style="color: #ffd93d; font-weight: bold; font-size: 16px;">👥 Cohort Analysis</div>
+        <div style="color: #c0c0c0; font-size: 13px; margin-top: 5px;">Retention curves and cohort behavior over time</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-        st.write("Use the sidebar to navigate between pages")
-
-
-
-with nav_col2:
-    if st.button("🎯 Risk Scoring", use_container_width=True):
-        st.switch_page("pages/02_risk_scoring.py")
-
-with nav_col3:
-    if st.button("👥 Cohort Analysis", use_container_width=True):
-        st.switch_page("pages/03_cohort.py")
-
-with nav_col4:
-    if st.button("💰 Revenue Impact", use_container_width=True):
-        st.switch_page("pages/04_revenue.py")
+with preview_col2:
+    st.markdown("""
+    <div style="background-color: #0f3460; padding: 20px; border-radius: 10px; border-left: 4px solid #ff6b6b; margin-bottom: 15px;">
+        <div style="color: #ff6b6b; font-weight: bold; font-size: 16px;">🎯 Risk Scoring</div>
+        <div style="color: #c0c0c0; font-size: 13px; margin-top: 5px;">Customer risk segmentation and prediction models</div>
+    </div>
+    <div style="background-color: #0f3460; padding: 20px; border-radius: 10px; border-left: 4px solid #6bcb77; margin-bottom: 15px;">
+        <div style="color: #6bcb77; font-weight: bold; font-size: 16px;">💰 Revenue Impact</div>
+        <div style="color: #c0c0c0; font-size: 13px; margin-top: 5px;">Revenue at risk and financial impact calculations</div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Footer
 st.markdown("---")
