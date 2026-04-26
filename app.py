@@ -152,7 +152,13 @@ nav_col1, nav_col2, nav_col3, nav_col4 = st.columns(4)
 
 with nav_col1:
     if st.button("📊 Executive Summary", use_container_width=True):
-        st.switch_page("pages/01_executive.py")
+        import streamlit as st
+        
+        st.title("Customer Churn Intelligence Platform")
+
+        st.write("Use the sidebar to navigate between pages")
+
+
 
 with nav_col2:
     if st.button("🎯 Risk Scoring", use_container_width=True):
