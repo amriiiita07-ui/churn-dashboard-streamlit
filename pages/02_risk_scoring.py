@@ -6,7 +6,6 @@ import plotly.graph_objects as go
 
 st.set_page_config(page_title="Risk Scoring", page_icon="🎯", layout="wide")
 
-# Custom CSS - matching theme
 st.markdown("""
 <style>
     .main { background-color: #0a1628; }
@@ -50,7 +49,6 @@ st.title("🎯 Risk Scoring & Customer Segmentation")
 st.markdown('<p style="color: #a0a0a0; margin-bottom: 25px;">Identify and prioritize at-risk customers before they churn</p>', unsafe_allow_html=True)
 st.markdown("---")
 
-# Load data
 @st.cache_data
 def load_data():
     try:
@@ -61,7 +59,6 @@ def load_data():
 
 df = load_data()
 
-# Calculate risk score
 df['risk_score'] = (
     (df['MonthlyCharges'] / df['MonthlyCharges'].max()) * 0.5 +
     (1 - df['tenure'] / df['tenure'].max()) * 0.5
@@ -73,7 +70,6 @@ df['risk_category'] = pd.cut(
     labels=['Very Low', 'Low', 'Medium', 'High', 'Very High']
 )
 
-# KPI Cards
 st.markdown('<h3 style="color: #00d2ff; margin-bottom: 20px;">📈 Risk Overview</h3>', unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
@@ -81,6 +77,7 @@ col1, col2, col3, col4 = st.columns(4)
 high_risk = df[df['risk_score'] >= 60]
 avg_risk = df['risk_score'].mean()
 high_risk_churned = df[(df['risk_score'] >= 60) & (df['Churn'] == 'Yes')]
+pct = (len(high_risk) / len(df) * 100)
 
 with col1:
     st.markdown(f"""
@@ -107,7 +104,6 @@ with col3:
     """, unsafe_allow_html=True)
 
 with col4:
-    pct = (len(high_risk) / len(df) * 100)
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">{pct:.1f}%</div>
@@ -116,8 +112,6 @@ with col4:
     """, unsafe_allow_html=True)
 
 st.markdown("---")
-
-# Charts
 st.markdown('<h3 style="color: #00d2ff; margin-bottom: 20px;">📊 Risk Distribution</h3>', unsafe_allow_html=True)
 
 col_left, col_right = st.columns(2)
@@ -152,7 +146,7 @@ with col_right:
         title="Risk Score by Tenure vs Monthly Charges",
         labels={'risk_score': 'Risk Score'}
     )
-fig2.update_layout(
+    fig2.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font_color='#e0e0e0'
@@ -160,3 +154,21 @@ fig2.update_layout(
     fig2.update_xaxes(gridcolor='#1a4a7a')
     fig2.update_yaxes(gridcolor='#1a4a7a')
     st.plotly_chart(fig2, use_container_width=True)
+
+st.markdown("---")
+st.markdown('<h3 style="color: #00d2ff; margin-bottom: 20px;">🏆 Top 50 At-Risk Customers</h3>', unsafe_allow_html=True)
+
+cols_to_show = [c for c in ['customerID', 'Contract', 'tenure', 'MonthlyCharges', 'risk_score', 'risk_category']
+                if c in df.columns]
+top_50 = df.nlargest(50, 'risk_score')[cols_to_show]
+st.dataframe(top_50, use_container_width=True)
+
+st.markdown("---")
+st.markdown("""
+<div class="insight-box">
+<h4>💡 Risk Scoring Insight</h4>
+<p><strong>Highest Risk Profile:</strong> Month-to-month customers with low tenure and high monthly charges</p>
+<p><strong>Action:</strong> Target top 50 customers with personalized retention offers immediately</p>
+<p><strong>Expected Impact:</strong> Saving even 20% of high-risk customers significantly reduces churn revenue loss</p>
+</div>
+""", unsafe_allow_html=True)
