@@ -95,6 +95,9 @@ streamlit run app.py
 
 ---
 
-Built by Amrita Singh
+Built by 
+Amrita Singh
+
 Data Analytics | Python | Dashboard Development
+
 LinkedIn: www.linkedin.com/in/amriiiita07  | GitHub: github.com/amriiiita07-ui
