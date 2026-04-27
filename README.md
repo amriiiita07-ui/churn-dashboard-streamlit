@@ -35,7 +35,7 @@ churn risk so retention teams can act fast.
 ## Platform Pages
 
 Executive Overview
-- Real-time KPI cards — churn rate, MRR at risk, LTV prediction
+- Real-time KPI cards: churn rate, MRR at risk, LTV prediction
 - Retention health donut chart and weekly churn velocity trends
 - Top segments ranked by churn rate with AI strategic insight
 
@@ -51,7 +51,7 @@ Cohort Analysis
 
 Revenue Impact
 - Total annual revenue at risk calculation
-- Tier-wise leakage breakdown — Critical, Growth, Legacy
+- Tier-wise leakage breakdown: Critical, Growth, Legacy
 - Interactive ROI calculator with campaign cost comparison
 
 ---
@@ -90,7 +90,7 @@ streamlit run app.py
 
 - Custom cyberpunk dark UI designed from scratch using CSS and Plotly
 - Deployed end-to-end from raw data to live web application
-- Real business logic — churn scoring, MRR calculation, ROI engine
+- Real business logic: churn scoring, MRR calculation, ROI engine
 - 4 fully interactive analytical pages with actionable recommendations
 
 ---
