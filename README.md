@@ -15,7 +15,7 @@
 
 ---
 
-## Overview
+## Overview 
 
 A professional interactive analytics dashboard built to help businesses 
 identify, score and act on customer churn risk before revenue is lost. 
@@ -24,7 +24,7 @@ Streamlit Cloud.
 
 ---
 
-## The Business Problem
+## The Business Problem 
 
 Telecom companies lose customers monthly without knowing who is at risk 
 or why. This platform provides a live, drillable, actionable view of 
