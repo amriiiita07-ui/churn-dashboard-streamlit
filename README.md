@@ -1,6 +1,6 @@
 # Customer Churn Intelligence Platform
 
-> End-to-end analytics system for revenue protection & customer retention  
+> End-to-end analytics system for revenue protection & customer retention   
 
 [
 
